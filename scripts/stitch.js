@@ -4,9 +4,6 @@ import { OrbitControls } from './../node_modules/three/examples/jsm/controls/Orb
 
 import { GLTFLoader } from './../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 
-// TODO Can't import gasp as module
-// import { gsap } from './../node_modules/gsap/dist/gsap.js';
-
 // Icy color palete
 // --navy-blue: #03045eff;
 // --dark-cornflower-blue: #023e8aff;
@@ -87,8 +84,18 @@ scene.add(floor);
 const loader = new GLTFLoader();
 loader.load(MODEL_PATH, function (gltf) {
   let stitch = gltf.scene;
-  // stitch.receiveShadow = true;
-  // stitch.castShadow = true;
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    stitch.rotation.x += 0.01;
+    stitch.rotation.y += 0.01;
+    stitch.rotation.z += 0.01;
+
+    stitch.position.z += 0.0001;
+    stitch.position.y += 0.01;
+  }
+  animate();
 
   scene.add(stitch);
 });
@@ -173,26 +180,6 @@ imageSphereComplete.position.z = -15;
 imageSphereComplete.position.y = 0.75;
 imageSphereComplete.position.x = 10;
 
-// TODO What should go here?
-gsap.registerPlugin();
-
-const test = () => {
-  const tl = gsap.timeline();
-  tl.fromTo(
-    rightSphere,
-    {
-      x: -250,
-      y: 150,
-    },
-    {
-      x: 150,
-      y: 150,
-    },
-  );
-  return tl;
-};
-test();
-
 // Set renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -213,6 +200,22 @@ controls.update();
 // Render
 function render() {
   requestAnimationFrame(render);
+
+  imageSphereComplete.rotation.x += 0.01;
+  imageSphereComplete.rotation.y += 0.01;
+
+  imageSphereComplete.position.z += 0.01;
+  imageSphereComplete.position.y += 0.08;
+
+  leftSphere.position.z -= 0.1;
+  leftSphere.position.y += 0.05;
+
+  centerSphere.position.z += 0.2;
+  centerSphere.position.x += 0.2;
+
+  rightSphere.position.z -= 0.1;
+  rightSphere.position.x -= 0.01;
+
   renderer.render(scene, camera);
 }
 render();
