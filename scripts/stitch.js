@@ -4,7 +4,7 @@ import { OrbitControls } from './../node_modules/three/examples/jsm/controls/Orb
 
 import { GLTFLoader } from './../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 
-// TODO Can't import gasp
+// TODO Can't import gasp as module
 // import { gsap } from './../node_modules/gsap/dist/gsap.js';
 
 // Icy color palete
@@ -172,6 +172,26 @@ scene.add(imageSphereComplete);
 imageSphereComplete.position.z = -15;
 imageSphereComplete.position.y = 0.75;
 imageSphereComplete.position.x = 10;
+
+// TODO What should go here?
+gsap.registerPlugin();
+
+const test = () => {
+  const tl = gsap.timeline();
+  tl.fromTo(
+    rightSphere,
+    {
+      x: -250,
+      y: 150,
+    },
+    {
+      x: 150,
+      y: 150,
+    },
+  );
+  return tl;
+};
+test();
 
 // Set renderer
 const renderer = new THREE.WebGLRenderer();
