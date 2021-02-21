@@ -1,7 +1,46 @@
 body {
   margin: 0;
+  font-family: 'Rock Salt', cursive;
 }
 
-canvas {
-  border: 1px solid #000;
+.text-container {
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  width: 80%;
+  z-index: 1;
+  font-size: 5rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .info {
+    top: 30px;
+    left: 40px;
+    width: 40%;
+    font-size: 2rem;
+  }
+}
+
+.secondary {
+  position: absolute;
+  bottom: 200px;
+  left: 40px;
+  width: 80%;
+  z-index: 1;
+  font-size: 5rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .secondary {
+    bottom: 100px;
+    width: 35%;
+    font-size: 2rem;
+  }
 }
