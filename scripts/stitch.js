@@ -1,8 +1,15 @@
-import * as THREE from './../node_modules/three/build/three.module.js';
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 
-import { OrbitControls } from './../node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js';
 
-import { GLTFLoader } from './../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader';
+
+// Icy color palete
+// import * as THREE from './../node_modules/three/build/three.module.js';
+// import { OrbitControls } from './../node_modules/three/examples/jsm/controls/OrbitControls.js';
+// import { GLTFLoader } from './../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+
+// const playButton = document.getElementById('play-btn');
 
 // Icy color palete
 // --navy-blue: #03045eff;
@@ -88,12 +95,16 @@ loader.load(MODEL_PATH, function (gltf) {
   function animate() {
     requestAnimationFrame(animate);
 
-    stitch.rotation.x += 0.01;
-    stitch.rotation.y += 0.01;
-    stitch.rotation.z += 0.01;
-
-    stitch.position.z += 0.0001;
-    stitch.position.y += 0.01;
+    function startAnimStitch() {
+      setTimeout(() => {
+        stitch.rotation.x += 0.01;
+        stitch.rotation.y += 0.01;
+        stitch.rotation.z += 0.01;
+        stitch.position.z += 0.0001;
+        stitch.position.y += 0.01;
+      }, 3500);
+    }
+    startAnimStitch();
   }
   animate();
 
@@ -197,25 +208,28 @@ controls.autoRotateSpeed = 10;
 
 controls.update();
 
+function startAnim() {
+  setTimeout(() => {
+    imageSphereComplete.rotation.x += 0.01;
+    imageSphereComplete.rotation.y += 0.01;
+    imageSphereComplete.position.z += 0.01;
+    imageSphereComplete.position.y += 0.08;
+    leftSphere.position.z -= 0.1;
+    leftSphere.position.y += 0.05;
+    centerSphere.position.z += 0.2;
+    centerSphere.position.x += 0.2;
+    rightSphere.position.z -= 0.1;
+    rightSphere.position.x -= 0.01;
+  }, 3500);
+}
+
+// TODO add click event to start animation
+// playButton.addEventListener('click', startAnim());
+
 // Render
 function render() {
   requestAnimationFrame(render);
-
-  imageSphereComplete.rotation.x += 0.01;
-  imageSphereComplete.rotation.y += 0.01;
-
-  imageSphereComplete.position.z += 0.01;
-  imageSphereComplete.position.y += 0.08;
-
-  leftSphere.position.z -= 0.1;
-  leftSphere.position.y += 0.05;
-
-  centerSphere.position.z += 0.2;
-  centerSphere.position.x += 0.2;
-
-  rightSphere.position.z -= 0.1;
-  rightSphere.position.x -= 0.01;
-
+  startAnim();
   renderer.render(scene, camera);
 }
 render();

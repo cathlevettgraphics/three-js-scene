@@ -18,6 +18,23 @@ body {
   line-height: 1.6;
 }
 
+button {
+  position: absolute;
+  bottom: 220px;
+  left: 40px;
+  padding: 20px 30px;
+  border: 0;
+  outline: none;
+  background-color: #023e8aff;
+  color: #fff;
+  border-radius: 50px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #48cae4ff;
+}
+
 @media (min-width: 1024px) {
   .info {
     top: 30px;
